@@ -1,22 +1,36 @@
 package main.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import main.model.User;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.HashMap;
 import java.util.List;
 
 @RestController
 public class MainController {
+
     @GetMapping("/init")
-    public Boolean unit(){
+    public HashMap<String, Boolean> unit(){
         //TODO: check sessionId. If found => true, if not => false
-        return true;
+
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("result", false);
+        return response;
+    }
+    @PostMapping("/auth")
+    public HashMap<String, Boolean> auth(@RequestParam String name){
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("result", true);
+        String sessionId = RequestContextHolder.getRequestAttributes().getSessionId();
+        User user = new User();
+        user.setName(name);
+        user.setSessionId(sessionId);
+
+        return response;
     }
     @PostMapping("/message")
-    public Boolean sendMessage(String message){
+    public Boolean sendMessage(@RequestParam String message){
         return true;
     }
     @GetMapping("/message")
