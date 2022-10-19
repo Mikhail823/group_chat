@@ -32,3 +32,23 @@
     width: 200px;
     border-radius: 5px;
 }
+
+.message-item{
+    margin: 30px;
+}
+
+.message-header{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.datetime{
+    color: blue;
+    margin-right: 10px;
+}
+
+.username{
+    fond-weight: bold;
+    color: red;
+}
